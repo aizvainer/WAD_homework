@@ -36,6 +36,10 @@ header {
    font-size: 32px;
  }
 
+ header > div > div a + span {
+  color: #555;
+ }
+
  header a {
   color: #000;
   transition: color .5s;
@@ -107,6 +111,10 @@ header {
 
  .articleBody img {
    width: 100%;
+ }
+
+ .articleInfo > a ~ * {
+  font-size: 22px;
  }
 
  .likeBtn {
