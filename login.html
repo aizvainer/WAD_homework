@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"  href="logincss/loginstyle.css">
+        <title>Login</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        </style>
+    </head>
+    <body>
+        <header>
+            <div>
+                <div>
+                    <a href="./index.html">Home</a>
+                </div>
+                <div>
+                    <a class="userLink" href="./login.html"></a>
+                </div>
+            </div>
+        </header>
+
+        <div class="container"> 
+            <div class="form-container">
+                <h1>Welcome to PostIt</h1>
+                <nav>
+                    <a href="#">Create an account</a>
+                </nav>
+                <p>or<br>Please log in</p>
+                <form onsubmit="return validateFormAndRedirect()">
+                    <input type="text" id="username" name="username" placeholder="Email" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required><br>
+                    <button type="submit" class="login-button">Log in</button>
+                </form>
+                <script>
+                     function validateFormAndRedirect() {
+                            var username = document.getElementById("username").value;
+                            var password = document.getElementById("password").value;
+
+                            if (username !== "" && password !== ""){
+                                window.location.href = "./index.html";
+                                return false;
+                            } else {
+                                alert("Please fill in both Email and Password fields.");
+                                return false;
+                            }
+                        }
+                </script>
+                <nav>
+                    <a href="#">Forget password</a>
+                </nav>
+            </div>
+        </div>    
+    </body>
+</html>
