@@ -28,25 +28,11 @@
                     <a href="#">Create an account</a>
                 </nav>
                 <p>or<br>Please log in</p>
-                <form onsubmit="return validateFormAndRedirect()">
+                <form action="./index.html">
                     <input type="text" id="username" name="username" placeholder="Email" required>
                     <input type="password" id="password" name="password" placeholder="Password" required><br>
                     <button type="submit" class="login-button">Log in</button>
                 </form>
-                <script>
-                     function validateFormAndRedirect() {
-                            var username = document.getElementById("username").value;
-                            var password = document.getElementById("password").value;
-
-                            if (username !== "" && password !== ""){
-                                window.location.href = "./index.html";
-                                return false;
-                            } else {
-                                alert("Please fill in both Email and Password fields.");
-                                return false;
-                            }
-                        }
-                </script>
                 <nav>
                     <a href="#">Forget password</a>
                 </nav>
