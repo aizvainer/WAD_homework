@@ -25,9 +25,6 @@ header {
    background-color: #bbb;
    border-radius: 20px;
    width: 100%;
-   position: fixed;
-   top: 0;
-   left: 0;
 }
 
  header > div {
@@ -154,7 +151,8 @@ header {
  body {
     background-color: #f0f0f0; /* Grey background color */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: start;
     align-items: center;
     height: 100vh;
     margin: 0;
@@ -166,6 +164,7 @@ header {
     padding: 20px;
     width: 300px;
     text-align: center; /* Center-align the form elements */
+    margin-top: 100px;
 }
 
 #addPostForm label {
