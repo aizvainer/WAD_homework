@@ -176,6 +176,28 @@ font-size: 18px;
  margin: 0;
 }
 
+#dynamicPostsContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  margin: 0 20px;
+ }
+ 
+ #dynamicPostsContainer article {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #eee;
+  border-radius: 20px;
+ }
+ 
+ #dynamicPostsContainer article  > * {
+  margin-bottom: 10px;
+ }
+ 
+ #dynamicPostsContainer article  > *:last-child {
+  margin: 0;
+ }
+
 .articleBody img {
  width: 100%;
 }
