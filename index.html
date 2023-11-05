@@ -179,16 +179,20 @@
 
                 const article = document.createElement('article');
                 const articleInfo = document.createElement('div');
+                const user = document.createElement('div');
                 const userLink = document.createElement('a');
                 userLink.href = './login.html'; // Replace with the actual user link
                 userLink.classList.add('userLink', 'postLink');
-                userLink.textContent = post.author;
                 const authorNameContainer = document.createElement('div');
                 authorNameContainer.classList.add('authorNameContainer');
                 authorNameContainer.appendChild(userLink);
                 const dateDiv = document.createElement('div');
                 dateDiv.textContent = new Date(post.timestamp * 1000).toLocaleDateString();
-                articleInfo.appendChild(userLink);
+                articleInfo.classList.add('articleInfo');
+                user.textContent = post.author;
+                user.classList.add('user');
+                user.appendChild(userLink);
+                articleInfo.appendChild(user);
                 articleInfo.appendChild(dateDiv);
 
                 const articleBody = document.createElement('div');
@@ -242,16 +246,20 @@
 
                 const article = document.createElement('article');
                 const articleInfo = document.createElement('div');
+                const user = document.createElement('div');
                 const userLink = document.createElement('a');
                 userLink.href = './login.html'; // Replace with the actual user link
                 userLink.classList.add('userLink', 'postLink');
-                userLink.textContent = post.author;
                 const authorNameContainer = document.createElement('div');
                 authorNameContainer.classList.add('authorNameContainer');
                 authorNameContainer.appendChild(userLink);
                 const dateDiv = document.createElement('div');
                 dateDiv.textContent = new Date(post.timestamp * 1000).toLocaleDateString();
-                articleInfo.appendChild(userLink);
+                articleInfo.classList.add('articleInfo');
+                user.textContent = post.author;
+                user.classList.add('user');
+                user.appendChild(userLink);
+                articleInfo.appendChild(user);
                 articleInfo.appendChild(dateDiv);
 
                 const articleBody = document.createElement('div');

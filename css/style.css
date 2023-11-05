@@ -113,6 +113,14 @@ font-size: 18px;
   background-color: rgba(204, 204, 204, 0.8);
 }
 
+.user {
+  display: flex;
+  align-items: center;
+}
+.user > a {
+  margin-left: 20px;
+}
+
  .postLink {
    width: 32px;
    height: 32px;
@@ -157,6 +165,7 @@ font-size: 18px;
 }
 
 .articleInfo {
+ width: 100%;
  display: flex;
  flex-direction: row;
  align-items: center;
