@@ -19,7 +19,14 @@
                     <a href="./addPost.html">Add Post</a>
                 </div>
                 <div>
-                    <a href="./login.html" class="userLink"></a>
+                    <a href="#" class="userLink"></a>
+                    <div class="dropdownMenu" id="dropdownMenu">
+                        <ul>
+                            <li><a href="#">John Doe</a></li>
+                            <li><a href="#">john.doe@ut.ee</a></li>
+                            <li><a href="#">logout</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             
@@ -124,5 +131,28 @@
         </div>
         <footer>Footer</footer>
     </main>
+    <script>
+        const userLink = document.querySelector('.userLink');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        let menuOpen = false;
+        
+        userLink.addEventListener('click', function (event) {
+            event.stopPropagation();
+            if (!menuOpen) {
+                dropdownMenu.style.display = 'block';
+                menuOpen = true;
+            } else {
+                dropdownMenu.style.display = 'none';
+                menuOpen = false;
+            }
+        });
+        
+        document.addEventListener('click', function (event) {
+            if (menuOpen && event.target == userLink) {
+                dropdownMenu.style.display = 'none';
+                menuOpen = false;
+            }
+        });
+    </script>
 </body>
 </html>

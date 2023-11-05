@@ -22,6 +22,7 @@ main > * {
 header {
    background-color: #bbb;
    border-radius: 20px;
+   position: relative;
 }
 
  header > div {
@@ -55,6 +56,29 @@ header {
    height: 64px;
    background-image: url(../img/user.png);
  }
+
+ .dropdownMenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  width: 230px;
+  padding: 0 0 10px 10px;
+}
+
+.dropdownMenu ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.dropdownMenu a {
+  text-decoration: none;
+  color: #0a0a0a;
+  font-size: 18px;
+}
 
  .postLink {
    width: 32px;
@@ -139,6 +163,9 @@ header {
    .sideBlock {
       display: none;
    }
+   .dropdownMenu{
+    right: 0;
+   }
  }
 
  @media (max-width: 500px) {
@@ -150,5 +177,8 @@ header {
       width: 48px;
       height: 48px;
       background-size: 48px;
+   }
+   .dropdownMenu {
+    right: 0;
    }
  }
