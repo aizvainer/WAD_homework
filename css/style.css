@@ -48,6 +48,12 @@ header {
  header a:hover {
   color: #0013de;
  }
+ 
+ .userContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+ }
 
  .userLink {
    display: block;
@@ -59,7 +65,7 @@ header {
  .dropdownMenu {
   display: none;
   position: absolute;
-  top: 78px;
+  top: 70px;
   right: 0;
   background-color: #d1d1d1;
   border-radius: 10px;
@@ -173,5 +179,14 @@ header {
       width: 48px;
       height: 48px;
       background-size: 48px;
+   }
+   
+   .dropdownMenu {
+    top: 55px;
+    width: 180px;
+   }
+
+   .dropdownMenu a {
+    font-size: 16px;
    }
  }

@@ -18,7 +18,7 @@
                     <span>|</span>
                     <a href="./addPost.html">Add Post</a>
                 </div>
-                <div>
+                <div class="userContainer">
                     <a href="#" class="userLink"></a>
                     <div class="dropdownMenu" id="dropdownMenu">
                         <ul>
@@ -138,7 +138,6 @@
         
         userLink.addEventListener('click', function (event) {
             event.stopPropagation();
-            console.log("Click on userLink");
             if (!menuOpen) {
                 dropdownMenu.style.display = 'block';
                 menuOpen = true;
