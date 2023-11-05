@@ -22,7 +22,6 @@ main > * {
 header {
    background-color: #bbb;
    border-radius: 20px;
-   position: relative;
 }
 
  header > div {
@@ -60,7 +59,7 @@ header {
  .dropdownMenu {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 78px;
   right: 0;
   background-color: #d1d1d1;
   border-radius: 10px;
@@ -163,9 +162,6 @@ header {
    .sideBlock {
       display: none;
    }
-   .dropdownMenu{
-    right: 0;
-   }
  }
 
  @media (max-width: 500px) {
@@ -177,8 +173,5 @@ header {
       width: 48px;
       height: 48px;
       background-size: 48px;
-   }
-   .dropdownMenu {
-    right: 0;
    }
  }
