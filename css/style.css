@@ -48,6 +48,12 @@ transition: color .5s;
 header a:hover {
 color: #0013de;
 }
+ 
+.userContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
 
 article {
   display: flex;
@@ -80,16 +86,16 @@ position: relative;
 
 
 
-.dropdownMenu {
-display: none;
-position: absolute;
-top: 70px;
-right: 0;
-background-color: #d1d1d1;
-border-radius: 10px;
-width: 230px;
-padding: 0 0 10px 10px;
+.dropdownMenu {  display: none;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  width: 230px;
+  padding: 0 10px 10px 10px;
 }
+
 
 .dropdownMenu ul {
 list-style: none;
@@ -103,11 +109,15 @@ color: #0a0a0a;
 font-size: 18px;
 }
 
-.postLink {
- width: 32px;
- height: 32px;
- background-size: 32px;
+.dropdownMenu li:hover {
+  background-color: rgba(204, 204, 204, 0.8);
 }
+
+ .postLink {
+   width: 32px;
+   height: 32px;
+   background-size: 32px;
+ }
 
 
 .mainBlock {
@@ -193,9 +203,10 @@ footer {
 }
 
 @media (max-width: 500px) {
- header a, footer{
+  header a, footer{
     font-size: 24px;
  }
+}
 
  .userLink {
     width: 48px;
@@ -211,4 +222,71 @@ footer {
  .dropdownMenu a {
   font-size: 16px;
  }
+
+ .articleContainer article  > * {
+   margin-bottom: 10px;
+ }
+
+ .articleInfo {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between;
+ }
+
+ .articleContainer article  > *:last-child {
+   margin: 0;
+ }
+
+ .articleBody img {
+   width: 100%;
+ }
+
+ .articleInfo > a ~ * {
+  font-size: 22px;
+ }
+
+ .likeBtn {
+   cursor: pointer;
+   width: 32px;
+   height: 32px;
+   background-image: url(../img/thumb-up.png);
+ }
+
+ .likeBtn:active {
+   transform: scale(.75);
+ }
+
+ footer {
+  font-size: 32px;
+  padding: 30px;
+  background-color: #bbb;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .sideBlock {
+     display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  header a, footer{
+     font-size: 24px;
+  }
+
+  .userLink {
+     width: 48px;
+     height: 48px;
+     background-size: 48px;
+  }
+  
+  .dropdownMenu {
+   top: 55px;
+   width: 180px;
+  }
+
+  .dropdownMenu a {
+   font-size: 16px;
+  }
 }
