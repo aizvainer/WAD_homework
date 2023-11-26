@@ -71,8 +71,22 @@ export default createStore({
     }
   },
   mutations: {
+        // Mutation to update likes for a specific post
+        updatePostLikes(state, { author, likes }) {
+          state.postLikes[author] = likes;
+        },
+        // Mutation to reset likes for all posts
+        resetAllLikes(state) {
+          state.postLikes = {};
+        },
   },
   actions: {
+    // Action to handle like toggle for a post
+    toggleLike({ commit, state }, author) {
+      const currentLikes = state.postLikes[author] || 0;
+      const newLikes = currentLikes + (state.postLikes[author] ? -1 : 1);
+      commit('updatePostLikes', { author, likes: newLikes });
+    },
   },
   modules: {
   }
