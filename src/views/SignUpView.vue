@@ -53,7 +53,7 @@ data() {
 
   methods: {
     validatePassword() {
-      const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z].*[a-z])(?=.*\d)(?=.*_)[A-Z][A-Za-z\d_]{7,14}$/;
+      const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z].*[a-z])(?=.*\d)(?=.*_)[A-Z][A-Za-z\d_]{7,13}$/;
       this.isPasswordValid = passwordRegex.test(this.password);
     },
 
@@ -63,7 +63,6 @@ data() {
         this.$refs.conditionsModal.openModal();
         return;
       }
-  
     },
   },
 };
