@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS posts
 execute(createTblQuery).then((result) => {
     insertValues = `
         INSERT INTO posts(
-            id, timestamp, text, author, image)
-            VALUES (1, 1666475066, 'Tartu 2024', 'Noor Duncan', 'tartu-old-city.jpg') ON CONFLICT DO NOTHING;
+            id, timestamp, text, author)
+            VALUES (1, 1666475066, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam possimus, dicta blanditiis harum nulla ipsam, adipisci, tenetur aliquam repudiandae facere sunt error inventore. Ea architecto nulla nesciunt cupiditate tempore debitis!', 'Noor Duncan') ON CONFLICT DO NOTHING;
         INSERT INTO posts(
             id, timestamp, text, author)
             VALUES (2, 1664747066, 'Anyone knows in which room lab is today', 'Davina Charles') ON CONFLICT DO NOTHING;

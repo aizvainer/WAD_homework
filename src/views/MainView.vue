@@ -3,13 +3,21 @@
     <div class="mainBlock">
         <div class="sideBlock"></div>
         <div id="dynamicPostsContainer">
-            <article v-for="post in this.posts" :key="post.id">
+            <article
+                v-for="post in this.posts"
+                :key="post.id"
+                v-on:click="$router.push('/post/' + post.id)"
+            >
                 <div class="articleInfo">
                     <div class="user">
                         <a href="#" class="userLink postLink"></a>
                         <div>{{ post.author }}</div>
                     </div>
-                    <div>{{ new Date(post.timestamp * 1000).toLocaleDateString() }}</div>
+                    <div>
+                        {{
+                            new Date(post.timestamp * 1000).toLocaleDateString()
+                        }}
+                    </div>
                 </div>
                 <div class="articleBody">
                     <img
@@ -22,6 +30,12 @@
                     <div class="likeBtn"></div>
                 </div>
             </article>
+            <div class="buttons-main">
+                <button id="add-button" v-on:click="$router.push('/addPost')">Add Post</button>
+                <button id="delete-button" v-on:click="this.deletePosts()">
+                    Delete all posts
+                </button>
+            </div>
         </div>
         <div class="sideBlock"></div>
     </div>
@@ -31,16 +45,18 @@
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
+import router from "@/router";
 
 export default {
     name: "MainView",
     components: {
         HeaderComponent,
         FooterComponent,
+        router,
     },
     data() {
         return {
-            posts: []
+            posts: [],
         };
     },
     methods: {
@@ -50,9 +66,21 @@ export default {
                 .then((data) => (this.posts = data))
                 .catch((err) => console.log(err.message))
         },
+        deletePosts() {
+            fetch("http://localhost:3000/posts", {
+                method: "DELETE",
+            })
+                .then((response) => {
+                    console.log(response.data)
+                })
+                .catch((e) => {
+                    console.log(e)
+                })
+            location.reload()
+        },
     },
     mounted() {
-        this.fetchPosts()
+        this.fetchPosts();
     },
 };
 </script>
@@ -106,6 +134,10 @@ export default {
     background-color: #bbb;
     border-radius: 20px;
     flex-grow: 1;
+}
+
+article {
+    cursor: pointer;
 }
 
 .articleContainer {
@@ -181,9 +213,51 @@ export default {
     transform: scale(0.75);
 }
 
+.buttons-main > button {
+    width: 200px;
+    padding: 10px;
+    height: 50px;
+    position: fixed;
+    bottom: 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: bisque;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#add-button {
+    left: 30%;
+}
+#delete-button {
+    right: 30%;
+}
+
+@media (max-width: 1400px) {
+    #add-button {
+        left: 10%;
+    }
+    #delete-button {
+        right: 10%;
+    }
+}
+
 @media (max-width: 800px) {
     .sideBlock {
         display: none;
+    }
+    #add-button {
+        left: 20px;
+    }
+    #delete-button {
+        right: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .buttons-main > button {
+        width: 150px;
+        font-size: 18px;
     }
 }
 </style>
