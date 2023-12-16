@@ -3,17 +3,17 @@
     <div class="mainBlock">
         <div class="sideBlock"></div>
         <div id="dynamicPostsContainer">
-            <article v-for="post in getPosts()">
+            <article v-for="post in this.posts" :key="post.id">
                 <div class="articleInfo">
                     <div class="user">
                         <a href="#" class="userLink postLink"></a>
                         <div>{{ post.author }}</div>
                     </div>
-                    <div>{{ post.timestamp }}</div>
+                    <div>{{ new Date(post.timestamp * 1000).toLocaleDateString() }}</div>
                 </div>
                 <div class="articleBody">
                     <img
-                        v-if="post.image !== undefined"
+                        v-if="post.image !== null"
                         :src="require('@/assets/' + post.image)"
                     />
                     {{ post.text }}
@@ -38,15 +38,21 @@ export default {
         HeaderComponent,
         FooterComponent,
     },
-    methods: {
-        getPosts() {
-            return this.$store.getters.getPosts;
-        },
-    },
     data() {
         return {
-            publicPath: process.env.BASE_URL,
+            posts: []
         };
+    },
+    methods: {
+        fetchPosts() {
+            fetch("http://localhost:3000/posts")
+                .then((response) => response.json())
+                .then((data) => (this.posts = data))
+                .catch((err) => console.log(err.message))
+        },
+    },
+    mounted() {
+        this.fetchPosts()
     },
 };
 </script>
