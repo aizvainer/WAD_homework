@@ -64,7 +64,7 @@ data() {
       }
 
       try {
-        const response = await fetch('http://ваш_сервер/регистрация', {
+        const response = await fetch('http://localhost:3000/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -76,6 +76,9 @@ data() {
         });
 
         if (response.ok) {
+          const data = await response.json();
+          localStorage.setItem('token', data.token);
+
           this.$router.push('/login');
         } else {
           console.error('Error during registartion');
@@ -86,6 +89,7 @@ data() {
     },
   },
 };
+
 </script>
 
 <style>

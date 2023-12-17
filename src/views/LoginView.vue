@@ -36,17 +36,48 @@ import HeaderComponent from '@/components/HeaderComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 
 export default {
-    name: 'LoginView',
-    components: {
+  name: 'LoginView',
+  components: {
     HeaderComponent,
     FooterComponent
   },
-
-data() {
+  data() {
     return {
-      email: "",
-      password: "",
+      email: '',
+      password: ''
     };
+  },
+  methods: {
+    async submitForm() {
+      try {
+        const response = await fetch('http://localhost:3000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: this.email,
+            password: this.password,
+          }),
+        });
+
+         if (response.ok) {
+        const data = await response.json();
+        
+        if (data.loginSuccess) {
+          localStorage.setItem('token', data.token);
+          
+          this.$router.push('/main');
+        } else {
+          console.error('Login unsuccessful');
+        }
+      } else {
+        console.error('Error during login');
+      }
+    } catch (error) {
+      console.error('Request error', error);
+    }
+    },
   },
 };
 
