@@ -56,7 +56,8 @@ export default createStore({
         "image": "delta.jpg",
         "timestamp": 1659999203
     }
-    ]
+    ],
+    isAuthenticated: false,
   },
   getters: {
     getPosts (state) {
@@ -79,6 +80,12 @@ export default createStore({
         resetAllLikes(state) {
           state.postLikes = {};
         },
+        login(state) {
+          state.isAuthenticated = true;
+        },
+        logout(state) {
+          state.isAuthenticated = false;
+        },
   },
   actions: {
     // Action to handle like toggle for a post
@@ -87,6 +94,13 @@ export default createStore({
       const newLikes = currentLikes + (state.postLikes[author] ? -1 : 1);
       commit('updatePostLikes', { author, likes: newLikes });
     },
+    loginUser({ commit }) {
+      commit('login');
+    },
+    logoutUser({commit}) {
+      commit('logout')
+    }
+    
   },
   modules: {
   }

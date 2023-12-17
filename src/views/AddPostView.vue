@@ -1,7 +1,7 @@
 <template>
     <HeaderComponent />
     <div class="mainBlock">
-        <form class="post">
+        <form class="post" v-if="isAuthenticated">
             <div>Add post</div>
             <textarea
                 id="text"
@@ -13,6 +13,9 @@
                 <button type="submit" v-on:click="addPost()">Add</button>
             </div>
         </form>
+        <div v-else>
+            <p> Please log in to add a post. </p>
+        </div>
     </div>
     <FooterComponent />
 </template>
@@ -35,6 +38,9 @@ export default {
                 text: "",
             },
         };
+    },
+    computed: {
+        ...mapState(["isAuthenticated]),
     },
     methods: {
         addPost() {

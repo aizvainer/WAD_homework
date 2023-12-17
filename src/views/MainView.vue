@@ -35,6 +35,7 @@
                 <button id="delete-button" v-on:click="this.deletePosts()">
                     Delete all posts
                 </button>
+                <button id="logout-button" v-on:click="logout">Logout</button>
             </div>
         </div>
         <div class="sideBlock"></div>
@@ -46,6 +47,7 @@
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
 import router from "@/router";
+import { mapActions } from 'vuex';
 
 export default {
     name: "MainView",
@@ -78,6 +80,10 @@ export default {
                 })
             location.reload()
         },
+        logout() {
+            this.$store.dispatch('logout');
+            this.$router.push('login');
+        }
     },
     mounted() {
         this.fetchPosts();

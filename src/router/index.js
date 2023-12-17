@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import store from '../store/index.js'
 import LoginView from '../views/LoginView.vue'
 import SignUpView from '../views/SignUpView.vue'
 import MainView from '../views/MainView.vue'
@@ -36,12 +37,14 @@ const routes = [
   {
     path: '/post/:id',
     name: 'post',
-    component: PostView
+    component: PostView,
+    meta: {requiresAuth: true},
   },
   {
     path: '/addPost',
     name: 'addPost',
-    component: AddPostView
+    component: AddPostView,
+    meta: {requiresAuth: true}
   },
 ]
 
@@ -49,6 +52,15 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
+
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(route => route.meta.requiresAuth) && !store.state.isAuthenticated) {
+    next('/login');
+  } else {
+    next();
+  }
+});
 
 export default router
 
