@@ -18,12 +18,10 @@
                             
                         </div>
 
-                        <div class="buttonContainer">
-                            <button type="submit" class="loginButton">Login</button>
-                            <router-link to="/signup">
-                                <button type="submit" class="signUpButton">Sign Up</button>
-                            </router-link>
-                        </div>
+                        <button type="submit" class="loginButton">Login</button>
+                          <router-link to="/signup">
+                              <button type="submit" class="signUpButton">Sign Up</button>
+                          </router-link>
                     </form>
                 </div>
             </div>
@@ -67,7 +65,8 @@ export default {
         if (data.loginSuccess) {
           localStorage.setItem('token', data.token);
           
-          this.$router.push('/main');
+          //this.$router.push('/main');
+          location.assign('/main');
         } else {
           console.error('Login unsuccessful');
         }
@@ -145,13 +144,6 @@ input {
   margin-right: 40px;
 }
 
-.buttonContainer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-
 .signUpButton {
   padding: 10px;
   width: 100px;
@@ -167,6 +159,8 @@ input {
   padding: 10px;
   width: 100px;
   height: 35px;
+  margin-right: 70px;
+  margin-bottom: 10px;
   background-color: #007bff;
   color: #fff;
   border: none;
