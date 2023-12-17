@@ -2,7 +2,8 @@
     <div>
         <HeaderComponent />
             <div class="container">
-                <div class="signUpContainer">
+                <div class="loginContainer">
+                    <h2>Login or</h2>
                   <h2>Create an account</h2>
                     <form @submit.prevent="submitForm" class="userForm">
                         
@@ -17,29 +18,27 @@
                             
                         </div>
 
-                        <div v-if="!isPasswordValid" class="passwordValidation">
-                            Password is not valid.
+                        <div class="buttonContainer">
+                            <button type="submit" class="loginButton">Login</button>
+                            <router-link to="/signup">
+                                <button type="submit" class="signUpButton">Sign Up</button>
+                            </router-link>
                         </div>
-
-                        <button type="submit" class="signUpButton">Sign Up</button>
                     </form>
                 </div>
             </div>
-            <PasswordConditionsModal ref="conditionsModal" />
         </div>
         <FooterComponent />
 </template>
 
 <script>
 import HeaderComponent from '@/components/HeaderComponent.vue'
-import PasswordConditionsModal from '@/components/PasswordConditionsModal.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 
 export default {
-    name: 'SignUpView',
+    name: 'LoginView',
     components: {
     HeaderComponent,
-    PasswordConditionsModal,
     FooterComponent
   },
 
@@ -47,45 +46,10 @@ data() {
     return {
       email: "",
       password: "",
-      isPasswordValid: true,
     };
   },
-
-  methods: {
-    validatePassword() {
-      const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z].*[a-z])(?=.*\d)(?=.*_)[A-Z][A-Za-z\d_]{7,13}$/;
-      this.isPasswordValid = passwordRegex.test(this.password);
-    },
-    async submitForm() {
-      this.validatePassword();
-      if (!this.isPasswordValid) {
-        this.$refs.conditionsModal.openModal();
-        return;
-      }
-
-      try {
-        const response = await fetch('http://ваш_сервер/регистрация', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: this.email,
-            password: this.password,
-          }),
-        });
-
-        if (response.ok) {
-          this.$router.push('/login');
-        } else {
-          console.error('Error during registartion');
-        }
-      } catch (error) {
-        console.error('It is a request error', error);
-      }
-    },
-  },
 };
+
 </script>
 
 <style>
@@ -98,8 +62,8 @@ data() {
     background-color: #f0f0f0;
 }
 
-.signUpContainer {
-    height: 350px;
+.loginContainer {
+    height: 400px;
     width: 500px;
     background-color: #ffffff; 
     padding: 20px;
@@ -118,7 +82,6 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: end;
-  padding: 30px;
   margin-top: 10px;
   margin-right: 75px;
 
@@ -151,17 +114,35 @@ input {
   margin-right: 40px;
 }
 
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+
 .signUpButton {
   padding: 10px;
   width: 100px;
   height: 35px;
-  margin-right: 70px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 25px;
   cursor: pointer;
 }
+
+.loginButton {
+  padding: 10px;
+  width: 100px;
+  height: 35px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
 
 button:hover{
   background-color: #0056b3;

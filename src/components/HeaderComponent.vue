@@ -4,7 +4,7 @@
                 <div>
                     <router-link to="/">Home</router-link>
                     <span> | </span>
-                    <router-link to="/signup">Sign Up</router-link>
+                    <router-link to="/contactus">Contact us</router-link>
                 </div>
                 <div class="userContainer">
                     <a href="#" class="userLink"></a>
