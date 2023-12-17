@@ -40,7 +40,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(["isAuthenticated]),
+        //...mapState(["isAuthenticated]),
     },
     methods: {
         addPost() {
