@@ -1,6 +1,8 @@
 const express = require("express");
 const pool = require("./database");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const port = process.env.PORT || 3000;
 
 const app = express();
@@ -77,6 +79,30 @@ app.post("/posts", async (req, res) => {
         res.json(addpost)
     } catch (err) {
         console.error(err.message)
+    }
+});
+
+//User registration
+
+app.post("/register", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        
+        const hashedPassword = await bcrypt.hash(password, 10);
+        
+        const user = await pool.query(
+            "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *",
+            [email, hashedPassword]
+        );
+
+        const userId = user.rows[0].id;
+
+        const token = jwt.sign({ userId, email }, "yourSecretKey", { expiresIn: "1h" });
+
+        res.json({ token });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
 

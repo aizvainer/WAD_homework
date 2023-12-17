@@ -30,6 +30,15 @@ CREATE TABLE IF NOT EXISTS posts
     CONSTRAINT test_pkey PRIMARY KEY (id)
 );`
 
+const createUsersTableQuery = `
+CREATE TABLE IF NOT EXISTS users
+(
+    "id" serial NOT NULL,
+    "email" varchar(100) UNIQUE NOT NULL,
+    "password" varchar(255) NOT NULL,
+    CONSTRAINT users_pkey PRIMARY KEY (id)
+);`
+
 execute(createTblQuery).then((result) => {
     insertValues = `
         INSERT INTO posts(
@@ -63,6 +72,13 @@ execute(createTblQuery).then((result) => {
             id, timestamp, text, author, image)
             VALUES (10, 1659999203, 'Your studies will take place in this building', 'Ellie Blackwell', 'delta.jpg') ON CONFLICT DO NOTHING;`
     execute(insertValues)
+
+});
+
+    execute(createUsersTableQuery).then((result) => {
+        const insertUsersValues = ``;
+    execute(insertUsersValues);
+
 });
 
 module.exports = pool
