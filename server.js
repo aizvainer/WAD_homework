@@ -106,6 +106,34 @@ app.post("/register", async (req, res) => {
     }
 });
 
+//User login
+
+app.post('/login', async (req, res) => {
+    try {
+      const { email, password } = req.body;
+  
+      const user = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+  
+      if (user.rows.length === 0) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+  
+      const passwordMatch = await bcrypt.compare(password, user.rows[0].password);
+  
+      if (!passwordMatch) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+  
+      const token = jwt.sign({ userId: user.rows[0].id, email: user.rows[0].email, loginSuccess: true }, 'yourSecretKey', { expiresIn: '1h' });
+  
+      res.json({ token });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
+
 app.listen(port, () => {
     console.log("Server is listening to port " + port);
 });
